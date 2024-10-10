@@ -77,8 +77,9 @@ export class ColoredTreePicker extends TreePicker {
     this.id_to_colors = {};
   }
   add(id,parent_id,name,listener) {
-    super.add(id,parent_id,name,listener);
+    const thing = super.add(id,parent_id,name,listener);
     this.recolor_now();
+    return thing;
   }
   recolor_now() {
     this.id_to_colors = this.recolor();

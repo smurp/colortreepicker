@@ -38,7 +38,8 @@
 
             // Add tree structure to the picker
             treeData.forEach(item => {
-                treePicker.add(item.id, item.parent_id, item.name);
+              const thing = treePicker.add(item.id, item.parent_id, item.name);
+              thing.classList.add('treepicker-showing');
             });
 
             // Expand all branches initially

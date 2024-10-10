@@ -437,7 +437,8 @@ export class TreePicker extends HTMLElement {
       this.get_or_create_expander(parent,parent_id);
     }
     this.build_tree(branch, container, listener);
-     // 0x25b6
+    // 0x25b6
+    return container.children[0];
   }
   get_or_create_expander(thing, id) {
     if ((thing != null) && thing) {
