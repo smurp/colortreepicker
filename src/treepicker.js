@@ -100,72 +100,84 @@ export class TreePicker extends HTMLElement {
       this.style_sheet = append_html_to(`<style type="text/css">${this.gen_stylesheet_header()}</style>`, this.elem);
     }
   }
-  gen_stylesheet_header(){
-    return`
-          .contents, .expander, .treepicker-empty, .treepicker-collapse {
-              /* Common styles for clickable items */
-              cursor: pointer;
-          }
-          .treepicker-empty {
-              /* Not if empty */
-              cursor: default;
-          }
-          .container {
-              display: inline-block;
-              border: 1px solid;
-          overflow: hidden;
-          }
-          .contents {
-              font-size: 90%;
-              padding: .1em;
-          overflow: auto;
-          }
-          .treepicker-showing {
-              background-color: tan;
-          }
-          .treepicker-hidden {
-              /* For debugging, comment the following line to disable collapsing */
-              /*
-                text-decoration: strikethrough;
-               */
-          }
-          .treepicker-empty {
-              background-color: white;
-          }
-          .treepicker-indirect-empty {
-              /* For debugging, comment the following line to disable hiding */
-              display: none;
-          }
-          .treepicker-mixed {
-              font-style: italic;
-          }
-          .payload {
-              color: grey;
-              text-align: center;
-          }
-          .container .payload {
-              display: inline;
-              margin-left: 2px;
-          }
-          .container .payload:before {
-              content: '(';
-          }
-          .container .payload:after {
-              content: ')';
-          }
-          .treepicker-collapse > .container {
-              /* For debugging, comment the following line to disable collapsing */
-              display: none; /* */
-            }
-            .treepicker-label {
-            margin: .1em;
-            }
+  gen_stylesheet_header() {
+    return `
+    .contents, .expander, .treepicker-empty, .treepicker-collapse {
+      /* Common styles for clickable items */
+      cursor: pointer;
+    }
 
-.shield .contents {
-  background-color: rgba(63,63,63,.5) !important;
-  background: rgba(63,63,63,.5) !important;
-}
-`;
+    .treepicker-empty {
+      /* Not clickable if empty */
+      cursor: default;
+    }
+
+    .container {
+      display: inline-block;
+      border: 1px solid;
+      overflow: hidden;
+    }
+
+    .contents {
+      font-size: 90%;
+      padding: .1em;
+      overflow: auto;
+    }
+
+    .treepicker-showing {
+      background-color: tan;
+    }
+
+    .treepicker-hidden {
+      /* For debugging, comment the following line to disable collapsing */
+      /* text-decoration: strikethrough; */
+    }
+
+    .treepicker-empty {
+      background-color: white;
+    }
+
+    .treepicker-indirect-empty {
+      /* For debugging, comment the following line to disable hiding */
+      display: none;
+    }
+
+    .treepicker-mixed {
+      font-style: italic;
+    }
+
+    .payload {
+      color: grey;
+      text-align: center;
+    }
+
+    .container .payload {
+      display: inline;
+      margin-left: 2px;
+    }
+
+    .container .payload:before {
+      content: '(';
+    }
+
+    .container .payload:after {
+      content: ')';
+    }
+
+    .treepicker-collapse > .container {
+      /* For debugging, comment the following line to disable collapsing */
+      display: none;
+    }
+
+    .treepicker-label {
+      margin: .1em;
+    }
+
+    .shield .contents {
+      background-color: rgba(63, 63, 63, .5) !important;
+      background: rgba(63, 63, 63, .5) !important;
+    }
+  `;
   }
   //makes the treepicker unselectable and makes it available for styling through shield class
   shield() {
