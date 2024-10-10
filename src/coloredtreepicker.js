@@ -165,22 +165,22 @@ ${ctxSel}#${id}.treepicker-indirect-mixed.treepicker-collapse {
     return retval;
   }
   recolor_node(a_node, recursor, id, elem_raw, indent) {
-    const elem = d3.select(elem_raw);
+    const elem = elem_raw;  // Use the raw DOM element directly
     if (this.is_abstract(id)) {
       a_node[id] = {
         unshowing:  hsl2rgb(0, 0, L_unshowing),
-        showing:     hsl2rgb(0, 0, L_showing),
+        showing:    hsl2rgb(0, 0, L_showing),
         emphasizing: hsl2rgb(0, 0, L_emphasizing)
       };
     } else {
       // https://en.wikipedia.org/wiki/HSL_and_HSV#HSL
       //   Adding .5 ensures hues are centered in their range, not at top.
       //   Adding 1 ensures different first and last colors, since 0 == 360
-      const hue = ((recursor.i + .5)/(recursor.count + 1)) * 360;
-      recursor.i++; // post-increment to stay in the range below 360
+      const hue = ((recursor.i + .5) / (recursor.count + 1)) * 360;
+      recursor.i++;  // Increment to ensure hues stay in the right range
       a_node[id] = {
-        unshowing:   hsl2rgb(hue, S_all, L_unshowing),
-        showing:     hsl2rgb(hue, S_all, L_showing),
+        unshowing: hsl2rgb(hue, S_all, L_unshowing),
+        showing: hsl2rgb(hue, S_all, L_showing),
         emphasizing: hsl2rgb(hue, S_all, L_emphasizing)
       };
       if (verbose && [1, recursor.count + 1].includes(recursor.i)) {
@@ -190,6 +190,7 @@ ${ctxSel}#${id}.treepicker-indirect-mixed.treepicker-collapse {
     if (verbose) {
       console.log(indent + " - - - recolor_node("+id+")", a_node[id].unshowing);
     }
+
   }
   get_current_color_forId(id) {
     const state = this.id_to_state[true][id];

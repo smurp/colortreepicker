@@ -326,21 +326,19 @@ export class TreePicker extends HTMLElement {
       }
     }
   }
-  //D3: needs work for removing d3 dependency for d3.event.target
   click_handler(evt) {
-    if(this.is_shielded){
+    if (this.is_shielded) {
       return;
     }
-    const picker = this;
     let elem = evt.target;
     evt.stopPropagation();
-    let {id} = elem;
+    let { id } = elem;
     while (!id) {
       elem = elem.parentElement;
       id = elem.id;
     }
-    picker.handle_click(id); //, send_leafward)
     // This is hacky but ColorTreePicker.click_handler() needs the id too
+    this.handle_click(id);
     return id;
   }
   handle_click(id) {

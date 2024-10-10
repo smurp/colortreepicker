@@ -6,47 +6,42 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Colored Tree Picker Demo</title>
   <link rel="icon" href="nooviz.svg">
-    <script src="https://d3js.org/d3.v7.min.js"></script>
-    <!-- Bundled JS file from Rollup -->
-    <script type="module" src="./dist/bundle.js"></script>
+  <!-- Bundled JS file from Rollup -->
+  <script type="module" src="./dist/bundle.js"></script>
 </head>
 <body>
+  <!-- Tree Picker Container -->
+  <h1>Tree Picker Demo</h1>
+  <div id="pickers">
+    <color-tree-picker id="demo-tree-picker" use-name-as-label="true"></color-tree-picker>
+  </div>
+  <script>
+    // Initialize and populate the ColoredTreePicker after the custom element is defined
+    customElements.whenDefined('color-tree-picker').then(() => {
+      const treePicker = document.getElementById('demo-tree-picker');
 
-    <!-- Tree Picker Container -->
-    <h1>Tree Picker Demo</h1>
-    <div id="pickers">
-      <color-tree-picker id="demo-tree-picker" use-name-as-label="true"></color-tree-picker>
-    </div>
+      console.log({treePicker});
 
+      // Define tree structure with ids, parent ids, and labels
+      const treeData = [
+        { id: 'root', parent_id: '', name: 'Root' },
+        { id: 'branch1', parent_id: 'root', name: 'Branch 1' },
+        { id: 'branch2', parent_id: 'root', name: 'Branch 2' },
+        { id: 'leaf1', parent_id: 'branch1', name: 'Leaf 1' },
+        { id: 'leaf2', parent_id: 'branch1', name: 'Leaf 2' },
+        { id: 'leaf3', parent_id: 'branch2', name: 'Leaf 3' }
+      ];
 
-    <script>
-        // Initialize and populate the ColoredTreePicker after the custom element is defined
-        customElements.whenDefined('color-tree-picker').then(() => {
-            const treePicker = document.getElementById('demo-tree-picker');
+      // Add tree structure to the picker
+      treeData.forEach(item => {
+        const thing = treePicker.add(item.id, item.parent_id, item.name);
+        thing.classList.add('treepicker-showing');
+      });
 
-            console.log({treePicker});
-
-            // Define tree structure with ids, parent ids, and labels
-            const treeData = [
-                { id: 'root', parent_id: '', name: 'Root' },
-                { id: 'branch1', parent_id: 'root', name: 'Branch 1' },
-                { id: 'branch2', parent_id: 'root', name: 'Branch 2' },
-                { id: 'leaf1', parent_id: 'branch1', name: 'Leaf 1' },
-                { id: 'leaf2', parent_id: 'branch1', name: 'Leaf 2' },
-                { id: 'leaf3', parent_id: 'branch2', name: 'Leaf 3' }
-            ];
-
-            // Add tree structure to the picker
-            treeData.forEach(item => {
-              const thing = treePicker.add(item.id, item.parent_id, item.name);
-              thing.classList.add('treepicker-showing');
-            });
-
-            // Expand all branches initially
-          treePicker.expand_all();
-          treePicker.recolor_now();
-        });
-    </script>
-
+      // Expand all branches initially
+      treePicker.expand_all();
+      treePicker.recolor_now();
+    });
+  </script>
 </body>
 </html>
