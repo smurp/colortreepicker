@@ -1,13 +1,16 @@
 {
   "name": "colortreepicker",
-  "version": "0.5.0",
+  "version": "0.6.0",
   "description": "a hierarchic tree controller",
-  "main": "index.js",
+  "main": "src/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "",
-  "license": "ISC",
+  "author": "Shawn Murphy <smurp@smurp.com> (http://smurp.com)",
+  "license": "MIT",
+  "scripts": {
+    "build": "rollup -c"
+  },
   "devDependencies": {
     "@rollup/plugin-node-resolve": "^15.3.0",
     "rollup": "^4.24.0"
